@@ -1,4 +1,4 @@
-#SSH without passowrd
+# SSH without passowrd
 
 Step One: Generate ssh key for desktop at my desktop
 ---------
