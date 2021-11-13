@@ -1,20 +1,27 @@
 # SSH without passowrd
 
-Step One: Generate ssh key for desktop at my desktop
+We makes connections with our remote servers using SSH. But we cannot login without supplying password of the user that we are trying
+to login.
+In this article I've tried to describe how we can login to remote server with supplying password.
+
+Step One: Generate ssh key for desktop from where we will try to login out remote server.
 ---------
 
 ```sh
 ssh-keygen
 ```
-pres enter until process is finish.
-WARNING: make sure you are at the home directory
+Pres enter until process is finish.
+
+```diff
+- WARNING: make sure you are at the home directory
+```
 
 Step Two: Copy the public from .ssh folder
 --------
 ```sh
 cat .ssh/id_rsa.pub
 ```
-![alt text](https://bit.ly/3HmkoVR)
+![alt text](https://bit.ly/3FbgP2R)
 
 Step-Three: Login into remote server and put the copied public key into .ssh/authorized_keys
 ----------
@@ -22,10 +29,11 @@ Step-Three: Login into remote server and put the copied public key into .ssh/aut
 mkdir .ssh
 touch .ssh/authorized_keys
 ```
-![alt text](https://bit.ly/3Fe11N2)
-![alt text](https://bit.ly/3HmkoVR)
+![alt text](https://bit.ly/3kxMrIh)
+![alt text](https://bit.ly/3FbgP2R)
 
-WARNING: make sure you are at the home directory
--------
+```diff
+- WARNING: make sure you are at the home directory
+```
 
 Let's go back to your desktop and login agian. This time we won't need to put password for login.
