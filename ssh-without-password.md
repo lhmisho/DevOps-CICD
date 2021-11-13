@@ -4,7 +4,7 @@ We makes connections with our remote servers using SSH. But we cannot login with
 to login.
 In this article I've tried to describe how we can login to remote server without supplying password.
 
-Step One: Generate ssh key for desktop from where we will try to login out remote server.
+Step One: Generate ssh key for desktop from where we will try to login to remote server.
 ---------
 
 ```sh
