@@ -1,4 +1,5 @@
 # Creating systemd Socket and Service Files for Gunicorn
+Source Link: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-20-04
 
 To run Django project by systemd socket and service gunicorn, We need to install ```gunicorn```. Assuming that our system already has other dependency installed like virtualenv,django,db dependencies etc.
 
