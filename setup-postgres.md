@@ -1,0 +1,64 @@
+# Installing the Packages from the Ubuntu Repositories
+
+To begin the process, we’ll download and install all of the items we need from the Ubuntu repositories. We will use the Python package manager pip to install additional components a bit later.
+
+We need to update the local apt package index and then download and install the packages. The packages we install depend on which version of Python your project will use.
+
+If you are using Django with Python 3, type:
+
+```sh
+$ sudo apt update
+$ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
+```
+
+## Creating the PostgreSQL Database and User
+
+We’re going to jump right in and create a database and database user for our Django application.
+
+By default, Postgres uses an authentication scheme called “peer authentication” for local connections. Basically, this means that if the user’s operating system username matches a valid Postgres username, that user can login with no further authentication.
+
+During the Postgres installation, an operating system user named postgres was created to correspond to the `postgres` PostgreSQL administrative user. We need to use this user to perform administrative tasks. We can use sudo and pass in the username with the -u option.
+
+Log into an interactive Postgres session by typing:
+
+```sh
+$ sudo -u postgres psql
+```
+
+You will be given a PostgreSQL prompt where we can set up our requirements.
+
+First, create a database for your project:
+
+```sql
+postgres=# CREATE DATABASE 'myproject';
+```
+
+Next, create a database user for our project. Make sure to select a secure password:
+
+```sql
+postgres=# CREATE USER myprojectuser WITH PASSWORD 'password';
+```
+
+Afterwards, we’ll modify a few of the connection parameters for the user we just created. This will speed up database operations so that the correct values do not have to be queried and set each time a connection is established.
+
+We are setting the default encoding to `UTF-8`, which Django expects. We are also setting the default transaction isolation scheme to “read committed”, which blocks reads from uncommitted transactions. Lastly, we are setting the timezone. By default, our Django projects will be set to use UTC. These are all recommendations from the Django project itself:
+
+```sql
+postgres=# ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE myprojectuser SET timezone TO 'UTC';
+```
+
+Now, we can give our new user access to administer our new database:
+
+```sh
+postgres=# GRANT ALL PRIVILEGES ON DATABASE 'myproject' TO 'myprojectuser';
+```
+
+When you are finished, exit out of the PostgreSQL prompt by typing:
+
+```sh
+postgres=# \q
+```
+
+Postgres is now set up so that Django can connect to and manage its database information.
