@@ -109,3 +109,5 @@ Output
      Memory: 0B
      CGroup: /system.slice/gunicorn.socket
 ```
+
+[Next: nginx configuration](nginx-configure-to-proxy-pass-gunicorn.md)
