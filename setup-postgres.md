@@ -62,3 +62,5 @@ postgres=# \q
 ```
 
 Postgres is now set up so that Django can connect to and manage its database information.
+
+(Next Step: Create Virtual env for project)[create-virtual-env.md]
